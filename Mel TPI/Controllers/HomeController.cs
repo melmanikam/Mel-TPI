@@ -23,6 +23,11 @@ namespace Mel_TPI.Controllers
             return View();
         }
 
+        public IActionResult Fees()
+        {
+            return View();
+        }
+
         public IActionResult Contact()
         {
             return View();
