@@ -7,6 +7,18 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Mel_TPI.styles.css" asp-append-version="true" />
+
+    <style>
+        .parallax {
+            background-image: url("~/images/piano keyboard.png");
+            min-height: 500px;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+
 </head>
 <body>
     <header>
@@ -36,47 +48,22 @@
             </div>
         </nav>
     </header>
-    <div class="container">
+    <div class="container parallax">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
-    </div>
+    </div>      
 
-  
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - Mel_TPI - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+
 </body>
-<footer class="border-top footer text-muted">
-    <div class="container">
-        &copy; 2023 - Mel_TPI - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-    </div>
-</footer>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="~/js/site.js" asp-append-version="true"></script>
 @await RenderSectionAsync("Scripts", required: false)
 
 </html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        .parallax {
-            background-image: url("~/images/piano keyboard.png");
-            min-height: 500px;
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-    </style>
-</head>
-<body>
-
-    <div class="parallax"></div>
-
-    <div style="height:1000px;background-color:grey;font-size:36px">
-    </div>
-
-</body>
-</html>
-
