@@ -54,7 +54,7 @@ body {
 
 /* Style inputs with type="text", select elements and textareas */
 input[type=text], select, textarea {
-    width: 70%; /* Full width */
+    width: 100%; /* Full width */
     padding: 12px; /* Some padding */
     border: 2px solid #ccc; /* Gray border */
     border-radius: 4px; /* Rounded borders */
