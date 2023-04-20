@@ -1,23 +1,21 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Contact";
 }
 
 
-<div class="contact" >
+<div class="contact">
     <h1>Contact Us</h1>
-    <div class="container">
-        <form action="action_page.php">
-
-            <input type="text" id="fname" name="fullname" placeholder="Full Name">
-
-            <input type="text" id="lname" name="emailaddress" placeholder="Email Address">
-
-            <textarea id="subject" name="message" placeholder="Message" style="height:200px"></textarea>
-
-            <input type="submit" value="Submit">
-
-        </form>
+    <div class="d-inline-flex flex-wrap justify-content-left flex-row">
+        <div class="p-2 mr-auto">
+            <form action="action_page.php">
+                <input type="text" id="fname" name="fullname" placeholder="Full Name">
+                <input type="text" id="lname" name="emailaddress" placeholder="Email Address">
+                <textarea id="subject" name="message" placeholder="Message" style="height:200px"></textarea>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+        <div class="p-2 map-container">
+            <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3189.524632283036!2d174.65278661581002!3d-36.92562869151814!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6d0d43d1326870ab%3A0xa6e3eac3a2d3998!2s1%2F85%20Atkinson%20Road%2C%20Titirangi%2C%20Auckland%200604!5e0!3m2!1sen!2snz!4v1680572841163!5m2!1sen!2snz" width="800" height="650" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"> </iframe>
+        </div>
     </div>
-
-<iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3189.524632283036!2d174.65278661581002!3d-36.92562869151814!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6d0d43d1326870ab%3A0xa6e3eac3a2d3998!2s1%2F85%20Atkinson%20Road%2C%20Titirangi%2C%20Auckland%200604!5e0!3m2!1sen!2snz!4v1680572841163!5m2!1sen!2snz" width="800" height="650" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" </iframe>
+</div>

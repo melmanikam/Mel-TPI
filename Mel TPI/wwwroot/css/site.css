@@ -1,20 +1,20 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 50px;
+    margin-bottom: 50px;
 }
 
 .center {
@@ -32,18 +32,46 @@ body {
     outline: none;
     align-items: center;
     justify-content: center
-   
-}
-.container-fluid {
-    top: 56px;
-}
-.map {
-    float: right;
-    margin-right: 100px;
 }
 
+.map-container {
+    background-color: rgb(147, 147, 147);
+}
 
-  
+.landing-image {
+    background-image: url("../lib/photos/piano bannar.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 300px;
+    background-position: center;
+    top: 0;
+}
+
+.jumbotron-landing {
+    background-color: white;
+    border: solid white;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+nav {
+    background-color: rgb(47, 47, 47) !important;
+}
+
+body {
+    background-color: rgb(239, 239, 239);
+}
+
+.fa {
+    padding: 10px;
+    padding-top: 40px;
+    font-size: 50px !important;
+    width: 70px;
+    text-align: center;
+    text-decoration: none;
+    color: rgb(47, 47, 47);
+    border-radius: 100%;
+}
 
 /*CONTACT US FORM*/
 
@@ -57,7 +85,6 @@ input[type=text], select, textarea {
     margin-top: 6px; /* Add a top margin */
     margin-bottom: 16px; /* Bottom margin */
     resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
-  
 }
 
 /* Style the submit button with a specific background color etc */
@@ -74,12 +101,3 @@ input[type=submit] {
     input[type=submit]:hover {
         background-color: #45a049;
     }
-
-/* Add a background color and some padding around the form */
-.container {
-    border-radius: 5px;
-    background-color: #f2f2f2;
-    padding: 20px;
-    float: left;
-    width: auto;
-}
