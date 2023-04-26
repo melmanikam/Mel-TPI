@@ -39,7 +39,7 @@ body {
 }
 
 .landing-image {
-    background-image: url("../lib/photos/piano bannar.jpg");
+    background-image: url('../lib/photos/piano.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     height: 300px;
@@ -71,6 +71,12 @@ body {
     text-decoration: none;
     color: rgb(47, 47, 47);
     border-radius: 100%;
+    
+}
+
+.home {
+    padding-left: 250px;
+    padding-right: 250px;
 }
 
 /*CONTACT US FORM*/
@@ -101,3 +107,4 @@ input[type=submit] {
     input[type=submit]:hover {
         background-color: #45a049;
     }
+
