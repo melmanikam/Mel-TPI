@@ -196,3 +196,23 @@ span.price {
         margin-bottom: 20px;
     }
 }
+
+.dateheadings {
+        font-family: 'Open Sans', sans-serif; 
+        font-size:40px;
+}
+
+.dates {
+     font-family: 'Open Sans', sans-serif; 
+     font-size:30px;
+}
+
+.feesheading {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 40px;
+}
+
+.fees {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 30px;
+}
