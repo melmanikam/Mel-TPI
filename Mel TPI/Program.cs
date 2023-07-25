@@ -20,8 +20,12 @@ namespace Mel_TPI
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<Mel_TPIContext>();
 
+
             // Add services to the container.
+            
             builder.Services.AddControllersWithViews();
+            builder.Services.AddHealthChecks();
+            builder.Services.AddRazorPages();
 
             var app = builder.Build();
 
@@ -49,16 +53,36 @@ namespace Mel_TPI
 
             using (var scope = app.Services.CreateScope())
             {
-                var roleManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityRole>>();
+                var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
                 var roles = new[] { "Admin", "Student" };
 
                 foreach (var role in roles)
                 {
-                    if (!await roleManager.FindByEmailAsync(role))
-                        await role
+                    if (!await roleManager.RoleExistsAsync(role))
+                        await roleManager.CreateAsync(new IdentityRole(role));
                 }
             }
-                app.Run();
+
+            using (var scope = app.Services.CreateScope())
+            {
+                var userManager = scope.ServiceProvider.GetRequiredService<UserManager<Mel_TPIUser>>();
+                string Aemail = "admin@aiteesmusicstudio.com";
+                string Apassword = "Admin123$";
+
+                if (await userManager.FindByEmailAsync(Aemail) == null)
+                {
+                    var user = new Mel_TPIUser();
+                    user.UserName = Aemail;
+                    user.Email = Aemail;
+                    user.FirstName = "Admin";
+                    user.LastName = "Account";
+
+                    await userManager.CreateAsync(user, Apassword);
+                    await userManager.AddToRoleAsync(user, "Admin");
+                    
+                }
+            }
+            app.Run();
 
         }
     }
