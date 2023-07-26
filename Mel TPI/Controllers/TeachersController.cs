@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Mel_TPI.Data;
 using Mel_TPI.Models;
+using Microsoft.AspNetCore.Authorization;
 
-namespace Mel_TPI.Views
+namespace Mel_TPI.Controllers
 {
+    [Authorize]
     public class TeachersController : Controller
     {
         private readonly Mel_TPIContext _context;
@@ -22,9 +24,9 @@ namespace Mel_TPI.Views
         // GET: Teachers
         public async Task<IActionResult> Index()
         {
-              return _context.Teacher != null ? 
-                          View(await _context.Teacher.ToListAsync()) :
-                          Problem("Entity set 'Mel_TPIContext.Teacher'  is null.");
+            return _context.Teacher != null ?
+                        View(await _context.Teacher.ToListAsync()) :
+                        Problem("Entity set 'Mel_TPIContext.Teacher'  is null.");
         }
 
         // GET: Teachers/Details/5
@@ -58,7 +60,7 @@ namespace Mel_TPI.Views
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("TeacherID,FirstName,LastName")] Teacher teacher)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 _context.Add(teacher);
                 await _context.SaveChangesAsync();
@@ -95,7 +97,7 @@ namespace Mel_TPI.Views
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 try
                 {
@@ -150,14 +152,14 @@ namespace Mel_TPI.Views
             {
                 _context.Teacher.Remove(teacher);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool TeacherExists(int id)
         {
-          return (_context.Teacher?.Any(e => e.TeacherID == id)).GetValueOrDefault();
+            return (_context.Teacher?.Any(e => e.TeacherID == id)).GetValueOrDefault();
         }
     }
 }

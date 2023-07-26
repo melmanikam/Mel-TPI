@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Mel_TPI.Data;
 using Mel_TPI.Models;
 
-namespace Mel_TPI.Views
+namespace Mel_TPI.Controllers
 {
     public class LessonsController : Controller
     {
@@ -61,7 +61,7 @@ namespace Mel_TPI.Views
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("LessonID,TeacherID,StudentID,Date,Level,Type")] Lesson lesson)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 _context.Add(lesson);
                 await _context.SaveChangesAsync();
@@ -102,7 +102,7 @@ namespace Mel_TPI.Views
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 try
                 {
@@ -161,14 +161,14 @@ namespace Mel_TPI.Views
             {
                 _context.Lesson.Remove(lesson);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool LessonExists(int id)
         {
-          return (_context.Lesson?.Any(e => e.LessonID == id)).GetValueOrDefault();
+            return (_context.Lesson?.Any(e => e.LessonID == id)).GetValueOrDefault();
         }
     }
 }

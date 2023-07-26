@@ -7,90 +7,92 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Mel_TPI.Data;
 using Mel_TPI.Models;
+using Microsoft.AspNetCore.Authorization;
 
-namespace Mel_TPI.Views
+namespace Mel_TPI.Controllers
 {
-    public class StudentsController : Controller
+    [Authorize]
+    public class ContactsController : Controller
     {
         private readonly Mel_TPIContext _context;
 
-        public StudentsController(Mel_TPIContext context)
+        public ContactsController(Mel_TPIContext context)
         {
             _context = context;
         }
 
-        // GET: Students
+        // GET: Contacts
         public async Task<IActionResult> Index()
         {
-              return _context.Student != null ? 
-                          View(await _context.Student.ToListAsync()) :
-                          Problem("Entity set 'Mel_TPIContext.Student'  is null.");
+            return _context.Contact != null ?
+                        View(await _context.Contact.ToListAsync()) :
+                        Problem("Entity set 'Mel_TPIContext.Contact'  is null.");
         }
 
-        // GET: Students/Details/5
+        // GET: Contacts/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Student == null)
+            if (id == null || _context.Contact == null)
             {
                 return NotFound();
             }
 
-            var student = await _context.Student
-                .FirstOrDefaultAsync(m => m.StudentID == id);
-            if (student == null)
+            var contact = await _context.Contact
+                .FirstOrDefaultAsync(m => m.ContactID == id);
+            if (contact == null)
             {
                 return NotFound();
             }
 
-            return View(student);
+            return View(contact);
         }
 
-        // GET: Students/Create
+        // GET: Contacts/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Students/Create
+        // POST: Contacts/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("StudentID,FirstName,LastName,Email,PhoneNumber")] Student student)
+        public async Task<IActionResult> Create([Bind("ContactID,Name,Email,Message")] Contact contact)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(student);
+                _context.Add(contact);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(student);
+            return View(contact);
         }
 
-        // GET: Students/Edit/5
+        // GET: Contacts/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Student == null)
+            if (id == null || _context.Contact == null)
             {
                 return NotFound();
             }
 
-            var student = await _context.Student.FindAsync(id);
-            if (student == null)
+            var contact = await _context.Contact.FindAsync(id);
+            if (contact == null)
             {
                 return NotFound();
             }
-            return View(student);
+            return View(contact);
         }
 
-        // POST: Students/Edit/5
+        // POST: Contacts/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("StudentID,FirstName,LastName,Email,PhoneNumber")] Student student)
+        public async Task<IActionResult> Edit(int id, [Bind("ContactID,Name,Email,Message")] Contact contact)
         {
-            if (id != student.StudentID)
+            if (id != contact.ContactID)
             {
                 return NotFound();
             }
@@ -99,12 +101,12 @@ namespace Mel_TPI.Views
             {
                 try
                 {
-                    _context.Update(student);
+                    _context.Update(contact);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!StudentExists(student.StudentID))
+                    if (!ContactExists(contact.ContactID))
                     {
                         return NotFound();
                     }
@@ -115,49 +117,49 @@ namespace Mel_TPI.Views
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(student);
+            return View(contact);
         }
 
-        // GET: Students/Delete/5
+        // GET: Contacts/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Student == null)
+            if (id == null || _context.Contact == null)
             {
                 return NotFound();
             }
 
-            var student = await _context.Student
-                .FirstOrDefaultAsync(m => m.StudentID == id);
-            if (student == null)
+            var contact = await _context.Contact
+                .FirstOrDefaultAsync(m => m.ContactID == id);
+            if (contact == null)
             {
                 return NotFound();
             }
 
-            return View(student);
+            return View(contact);
         }
 
-        // POST: Students/Delete/5
+        // POST: Contacts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Student == null)
+            if (_context.Contact == null)
             {
-                return Problem("Entity set 'Mel_TPIContext.Student'  is null.");
+                return Problem("Entity set 'Mel_TPIContext.Contact'  is null.");
             }
-            var student = await _context.Student.FindAsync(id);
-            if (student != null)
+            var contact = await _context.Contact.FindAsync(id);
+            if (contact != null)
             {
-                _context.Student.Remove(student);
+                _context.Contact.Remove(contact);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool StudentExists(int id)
+        private bool ContactExists(int id)
         {
-          return (_context.Student?.Any(e => e.StudentID == id)).GetValueOrDefault();
+            return (_context.Contact?.Any(e => e.ContactID == id)).GetValueOrDefault();
         }
     }
 }
