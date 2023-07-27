@@ -26,6 +26,11 @@ namespace Mel_TPI
             builder.Services.AddControllersWithViews();
             builder.Services.AddHealthChecks();
             builder.Services.AddRazorPages();
+            builder.Services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/Identity/Account/Login";
+                options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+            });
 
             var app = builder.Build();
 
@@ -50,6 +55,7 @@ namespace Mel_TPI
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
             app.MapRazorPages();
+
 
             using (var scope = app.Services.CreateScope())
             {
