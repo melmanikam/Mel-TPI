@@ -50,8 +50,8 @@ namespace Mel_TPI.Controllers
         // GET: Lessons/Create
         public IActionResult Create()
         {
-            ViewData["StudentID"] = new SelectList(_context.Set<Student>(), "StudentID", "StudentID");
-            ViewData["TeacherID"] = new SelectList(_context.Set<Teacher>(), "TeacherID", "TeacherID");
+            ViewData["StudentID"] = new SelectList(_context.Set<Student>(), "StudentID", "FirstName");
+            ViewData["TeacherID"] = new SelectList(_context.Set<Teacher>(), "TeacherID", "FirstName");
             return View();
         }
 
@@ -68,8 +68,8 @@ namespace Mel_TPI.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["StudentID"] = new SelectList(_context.Set<Student>(), "StudentID", "StudentID", lesson.StudentID);
-            ViewData["TeacherID"] = new SelectList(_context.Set<Teacher>(), "TeacherID", "TeacherID", lesson.TeacherID);
+            ViewData["StudentID"] = new SelectList(_context.Set<Student>(), "StudentID", "FirstName", lesson.StudentID);
+            ViewData["TeacherID"] = new SelectList(_context.Set<Teacher>(), "TeacherID", "FirstName", lesson.TeacherID);
             return View(lesson);
         }
 
@@ -87,8 +87,8 @@ namespace Mel_TPI.Controllers
             {
                 return NotFound();
             }
-            ViewData["StudentID"] = new SelectList(_context.Set<Student>(), "StudentID", "StudentID", lesson.StudentID);
-            ViewData["TeacherID"] = new SelectList(_context.Set<Teacher>(), "TeacherID", "TeacherID", lesson.TeacherID);
+            ViewData["StudentID"] = new SelectList(_context.Set<Student>(), "StudentID", "FirstName", lesson.StudentID);
+            ViewData["TeacherID"] = new SelectList(_context.Set<Teacher>(), "TeacherID", "FirstName", lesson.TeacherID);
             return View(lesson);
         }
 
@@ -124,8 +124,8 @@ namespace Mel_TPI.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["StudentID"] = new SelectList(_context.Set<Student>(), "StudentID", "StudentID", lesson.StudentID);
-            ViewData["TeacherID"] = new SelectList(_context.Set<Teacher>(), "TeacherID", "TeacherID", lesson.TeacherID);
+            ViewData["StudentID"] = new SelectList(_context.Set<Student>(), "StudentID", "FirstName", lesson.StudentID);
+            ViewData["TeacherID"] = new SelectList(_context.Set<Teacher>(), "TeacherID", "FirstName", lesson.TeacherID);
             return View(lesson);
         }
 
