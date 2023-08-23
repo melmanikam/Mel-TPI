@@ -6,6 +6,11 @@
 
 <h1>Lessons</h1>
 
+<form asp-controller="Lessons" asp-action="Index" method="get" role="search">
+    <input type="text" style="border-radius: 10px;" placeholder="Search Lessons.." name="SearchString" />
+    <button class="btn btn-outline-dark" type="submit">Search</button>
+</form>
+
 <p>
     <a style="color: black;" asp-action="Create">Create New</a>
 </p>

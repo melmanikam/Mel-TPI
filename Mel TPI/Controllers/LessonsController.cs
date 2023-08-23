@@ -21,10 +21,21 @@ namespace Mel_TPI.Controllers
         }
 
         // GET: Lessons
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string SearchString)
         {
-            var mel_TPIContext = _context.Lesson.Include(l => l.Student).Include(l => l.Teacher);
-            return View(await mel_TPIContext.ToListAsync());
+            var lessons = from n in _context.Lesson.Include(l => l.Student).Include(l => l.Teacher)
+                          select n;
+            if (!String.IsNullOrEmpty(SearchString))
+            {
+                lessons = lessons.Where(ss => ss.Student.FirstName!.Contains(SearchString) || ss.Teacher.FirstName!.Contains(SearchString));
+                return View(await lessons.ToListAsync());
+            }
+            else
+            {
+                var mel_TPIContext = _context.Lesson.Include(l => l.Student).Include(l => l.Teacher);
+                return View(await mel_TPIContext.ToListAsync());
+            }
+
         }
 
         // GET: Lessons/Details/5
