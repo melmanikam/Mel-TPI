@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Mel_TPI.Data;
 using Mel_TPI.Models;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace Mel_TPI.Views
 {
@@ -20,6 +22,8 @@ namespace Mel_TPI.Views
         }
 
         // GET: Students
+
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
               return _context.Student != null ? 

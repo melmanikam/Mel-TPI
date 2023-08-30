@@ -11,7 +11,6 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Mel_TPI.Controllers
 {
-    [Authorize]
     public class TeachersController : Controller
     {
         private readonly Mel_TPIContext _context;

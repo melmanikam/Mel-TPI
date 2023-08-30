@@ -1,6 +1,10 @@
 ﻿SELECT
-StudentID
+Type,
+Level,
+COUNT(*) AS TotalLessons
 FROM
 Lesson
-WHERE 
-Type = 'Guitar';
+GROUP BY
+CUBE(Type, Level)
+ORDER BY
+Type, Level;
