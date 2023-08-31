@@ -7,9 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Mel_TPI.Data;
 using Mel_TPI.Models;
-using Microsoft.AspNetCore.Authorization;
 
-namespace Mel_TPI.Controllers
+namespace Mel_TPI.Views.Teachers
 {
     public class TeachersController : Controller
     {
@@ -23,9 +22,9 @@ namespace Mel_TPI.Controllers
         // GET: Teachers
         public async Task<IActionResult> Index()
         {
-            return _context.Teacher != null ?
-                        View(await _context.Teacher.ToListAsync()) :
-                        Problem("Entity set 'Mel_TPIContext.Teacher'  is null.");
+              return _context.Teacher != null ? 
+                          View(await _context.Teacher.ToListAsync()) :
+                          Problem("Entity set 'Mel_TPIContext.Teacher'  is null.");
         }
 
         // GET: Teachers/Details/5
@@ -57,7 +56,7 @@ namespace Mel_TPI.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TeacherID,FirstName,LastName")] Teacher teacher)
+        public async Task<IActionResult> Create([Bind("TeacherID,FirstName,LastName,Email,PhoneNumber")] Teacher teacher)
         {
             if (!ModelState.IsValid)
             {
@@ -89,7 +88,7 @@ namespace Mel_TPI.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("TeacherID,FirstName,LastName")] Teacher teacher)
+        public async Task<IActionResult> Edit(int id, [Bind("TeacherID,FirstName,LastName,Email,PhoneNumber")] Teacher teacher)
         {
             if (id != teacher.TeacherID)
             {
@@ -151,14 +150,14 @@ namespace Mel_TPI.Controllers
             {
                 _context.Teacher.Remove(teacher);
             }
-
+            
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool TeacherExists(int id)
         {
-            return (_context.Teacher?.Any(e => e.TeacherID == id)).GetValueOrDefault();
+          return (_context.Teacher?.Any(e => e.TeacherID == id)).GetValueOrDefault();
         }
     }
 }

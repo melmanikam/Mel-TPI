@@ -139,6 +139,10 @@ input[type=submit] {
     padding: 0 16px;
 }
 
+.col p-3 {
+    margin-left: 150px;
+}
+
 .containerB {
     background-color: #f2f2f2;
     padding: 5px 20px 15px 20px;
