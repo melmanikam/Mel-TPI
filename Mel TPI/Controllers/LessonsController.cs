@@ -73,6 +73,11 @@ namespace Mel_TPI.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("LessonID,TeacherID,StudentID,Date,Level,Type")] Lesson lesson)
         {
+            if(lesson.Date <= DateTime.Now)
+            {
+                ModelState.AddModelError("","Lessons cannot be placed in the past.");
+                return View(lesson);
+            }
             if (!ModelState.IsValid)
             {
                 _context.Add(lesson);
