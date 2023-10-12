@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Mel_TPI.Data;
 using Mel_TPI.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Mel_TPI.Views.Teachers
 {
@@ -46,6 +47,7 @@ namespace Mel_TPI.Views.Teachers
         }
 
         // GET: Teachers/Create
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();
@@ -68,6 +70,7 @@ namespace Mel_TPI.Views.Teachers
         }
 
         // GET: Teachers/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Teacher == null)
@@ -119,6 +122,7 @@ namespace Mel_TPI.Views.Teachers
         }
 
         // GET: Teachers/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Teacher == null)

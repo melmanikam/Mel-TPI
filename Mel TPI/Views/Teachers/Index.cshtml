@@ -1,14 +1,22 @@
 ﻿@model IEnumerable<Mel_TPI.Models.Teacher>
+@using Mel_TPI.Areas.Identity.Data;
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<Mel_TPIUser> SignInManager
+@inject UserManager<Mel_TPIUser> UserManager
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Teachers";
 }
 
-<h1>Index</h1>
+<h1>Teachers</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+@if (SignInManager.IsSignedIn(User) && UserManager.GetUserAsync(User).Result.UserName == "admin@aiteesmusicstudio.com")
+{
+    <p>
+        <a style="color: black;" asp-action="Create">Create New</a>
+    </p>
+}
+
 <table class="table">
     <thead>
         <tr>
@@ -42,11 +50,14 @@
             <td>
                 @Html.DisplayFor(modelItem => item.PhoneNumber)
             </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.TeacherID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.TeacherID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.TeacherID">Delete</a>
-            </td>
+                @if (SignInManager.IsSignedIn(User) && UserManager.GetUserAsync(User).Result.UserName == "admin@aiteesmusicstudio.com")
+                {
+                    <td>
+                        <a style="color: black;" asp-action="Edit" asp-route-id="@item.TeacherID">Edit</a> |
+                        <a style="color: black;" asp-action="Details" asp-route-id="@item.TeacherID">Details</a> |
+                        <a style="color: black;" asp-action="Delete" asp-route-id="@item.TeacherID">Delete</a>
+                    </td>
+                }
         </tr>
 }
     </tbody>

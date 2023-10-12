@@ -1,4 +1,8 @@
 ﻿@model IEnumerable<Mel_TPI.Models.Lesson>
+@using Mel_TPI.Areas.Identity.Data;
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<Mel_TPIUser> SignInManager
+@inject UserManager<Mel_TPIUser> UserManager
 
 @{
     ViewData["Title"] = "Index";
@@ -11,9 +15,13 @@
     <button class="btn btn-outline-dark" type="submit">Search</button>
 </form>
 
-<p>
-    <a style="color: black;" asp-action="Create">Create New</a>
-</p>
+@if(SignInManager.IsSignedIn(User) && UserManager.GetUserAsync(User).Result.UserName == "admin@aiteesmusicstudio.com")
+{
+    <p>
+        <a style="color: black;" asp-action="Create">Create New</a>
+    </p>
+}
+
 <table class="table">
     <thead>
         <tr>
@@ -53,11 +61,15 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Student.FirstName)
             </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.LessonID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.LessonID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.LessonID">Delete</a>
-            </td>
+                @if (SignInManager.IsSignedIn(User) && UserManager.GetUserAsync(User).Result.UserName == "admin@aiteesmusicstudio.com")
+                {
+                    <td>
+
+                        <a style="color: black;" asp-action="Edit" asp-route-id="@item.LessonID">Edit</a> |
+                        <a style="color: black;" asp-action="Details" asp-route-id="@item.LessonID">Details</a> |
+                        <a style="color: black;" asp-action="Delete" asp-route-id="@item.LessonID">Delete</a>
+                    </td>
+                }
         </tr>
 }
     </tbody>

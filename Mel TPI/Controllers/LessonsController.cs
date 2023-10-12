@@ -59,6 +59,7 @@ namespace Mel_TPI.Controllers
         }
 
         // GET: Lessons/Create
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             ViewData["StudentID"] = new SelectList(_context.Set<Student>(), "StudentID", "FirstName");
