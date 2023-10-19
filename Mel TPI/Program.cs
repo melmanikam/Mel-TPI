@@ -17,12 +17,11 @@ namespace Mel_TPI
                 options.UseSqlServer(connectionString));
 
             builder.Services.AddIdentity<Mel_TPIUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
-                .AddRoles<IdentityRole>()
+                .AddRoles<IdentityRole>().AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<Mel_TPIContext>();
-
-
+         
             // Add services to the container.
-            
+
             builder.Services.AddControllersWithViews();
             builder.Services.AddHealthChecks();
             builder.Services.AddRazorPages();

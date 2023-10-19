@@ -5,7 +5,8 @@ namespace Mel_TPI.Models
     public class Teacher
     {
         public int TeacherID { get; set; }
-        [Display(Name = "First Name")]
+        [Display(Name = "First Name")]    // this code here is used for specifying how a property should be displayed in the front end of the website 
+
         public string FirstName { get; set; }
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
