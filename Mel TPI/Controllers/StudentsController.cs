@@ -61,6 +61,7 @@ namespace Mel_TPI.Views
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("StudentID,FirstName,LastName,Email,PhoneNumber")] Student student)
+
         {
             if (!ModelState.IsValid)
             {
